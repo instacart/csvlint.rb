@@ -72,6 +72,7 @@ module Csvlint
       @leading = ""
 
       @limit_lines = options[:limit_lines]
+      @allow_quoted_linebreaks = options[:allow_quoted_linebreaks].nil? ? true : options[:allow_quoted_linebreaks]
       @extension = parse_extension(source) unless @source.nil?
 
       @expected_columns = 0
@@ -142,6 +143,9 @@ module Csvlint
         # If the number of quotes is odd, the linebreak is inside some quotes
         if line.count(@dialect["quoteChar"]).odd?
           @leading = line
+          if @allow_quoted_linebreaks
+            return @leading
+          end
         else
           validate_line(line, @current_line)
           @leading = ""
