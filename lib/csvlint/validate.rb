@@ -146,6 +146,7 @@ module Csvlint
           if @allow_quoted_linebreaks
             return @leading
           end
+          validate_line(line, @current_line)
           @leading = ""
           @current_line += 1
         else
