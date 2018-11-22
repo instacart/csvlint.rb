@@ -215,7 +215,7 @@ module Csvlint
           end
         end
       end
-      @data << row if row
+      @data << row
     end
 
     def finish
