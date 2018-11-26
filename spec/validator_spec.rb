@@ -85,7 +85,7 @@ describe Csvlint::Validator do
       validator = Csvlint::Validator.new(data)
 
       expect(validator.valid?).to eql(false)
-      expect(validator.errors.first.type).to eql(:stray_quote)
+      expect(validator.errors.first.type).to eql(:unclosed_quote)
       expect(validator.errors.count).to eql(1)
     end
 
